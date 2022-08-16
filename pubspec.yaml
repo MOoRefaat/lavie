@@ -40,6 +40,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   flutter_native_splash: ^2.2.7
+  equatable: ^2.0.3
+  flutter_bloc: ^8.1.1
 
 flutter_native_splash:
   color:"#fffff"
@@ -64,8 +66,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+      - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -79,10 +81,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+     - family: Meddon
+       fonts:
+         - asset: assets/fonts/Meddon.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

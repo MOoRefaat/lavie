@@ -35,7 +35,7 @@ class RecoverScreen extends StatelessWidget {
                   // width: 213,
                   // height: 46,
                   child: Text(
-                    'Your password will be sent to your email!',
+                    'The OTP Code Will Be Sent To Your Email To Reset Your Password!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Work Sans',
@@ -44,25 +44,11 @@ class RecoverScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 169,
+                  height: 100,
                 ),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'Please Enter An Email Address';
-                    }
-                  },
-                  controller: emailController,
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Email Adress',
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                deafultEmailTextFormField(emailController: emailController),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -70,25 +56,38 @@ class RecoverScreen extends StatelessWidget {
                     //color: HexColor('#536DFE'),
                     borderRadius: BorderRadiusDirectional.circular(10),
                   ),
-                  child: MaterialButton(
-                    //colorBrightness: Brightness.dark,
-                    height: 58,
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) ;
-                    },
-                    child: Text(
-                      'Send',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    //  color: HexColor('#7D4EFF'),
-                    color: Colors.red,
+                  child: DefaultBTN(
+                    formKey: formKey,
+                    text: 'Send',
                     padding:
-                        EdgeInsets.symmetric(horizontal: 127.5, vertical: 16),
-                    //  clipBehavior: Clip.antiAliasWithSaveLayer,
+                        EdgeInsets.symmetric(horizontal: 125, vertical: 16),
+                    // onpressed: () {
+                    //   if (formKey.currentState!.validate()) {
+                    //     navigateTo(context, HomeLayoutScreen());
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
                   ),
+                  // MaterialButton(
+                  //   //colorBrightness: Brightness.dark,
+                  //   height: 58,
+                  //   onPressed: () {
+                  //     if (formKey.currentState!.validate()) ;
+                  //   },
+                  //   child: Text(
+                  //     'Send',
+                  //     style: TextStyle(
+                  //         fontSize: 22,
+                  //         fontWeight: FontWeight.bold,
+                  //         color: Colors.white),
+                  //   ),
+                  //   //  color: HexColor('#7D4EFF'),
+                  //   color: Colors.green,
+                  //   padding:
+                  //       EdgeInsets.symmetric(horizontal: 127.5, vertical: 16),
+                  //   //  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  // ),
                 ),
               ],
             ),

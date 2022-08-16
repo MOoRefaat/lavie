@@ -17,20 +17,36 @@ class LoginScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30, top: 80),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                  alignment: AlignmentDirectional.topEnd,
+                  width: double.infinity,
+                  height: 100,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadiusDirectional.all(Radius.circular(100))),
+                  child: Image(
+                    image: AssetImage('assets/images/up.png'),
+                    //alignment: ,
+                    //  height: height(context) * .55,
+                    // width: width(context),
+                    fit: BoxFit.fill,
+                  ),
+                ),
                 const Text(
-                  'Hello Again!',
+                  'La Vie',
                   style: TextStyle(
-                      fontFamily: 'Work Sans',
+                      fontFamily: 'Meddon',
                       fontWeight: FontWeight.w500,
                       fontSize: 48),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Container(
                   width: double.infinity,
@@ -42,105 +58,53 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Work Sans',
                         fontWeight: FontWeight.w500,
-                        fontSize: 20),
+                        fontSize: 18),
                   ),
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 30,
                 ),
-                deafultTextFormField(
-                  controller: emailController,
-                  label: 'Email Address',
-                  prefix: Icon(Icons.email),
-                  validate: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please Enter An Email Address';
-                    }
-                  },
-                  type: TextInputType.emailAddress,
-                )
-                // TextFormField(
-                //   keyboardType: TextInputType.emailAddress,
-                //   validator: (String? value) {
-                //     if (value!.isEmpty) {
-                //       return 'Please Enter An Email Address';
-                //     }
-                //   },
-                //   controller: emailController,
-                //   decoration: InputDecoration(
-                //     labelText: 'Email Address',
-                //     prefixIcon: Icon(Icons.email),
-                //     border: OutlineInputBorder(),
-                //   ),
-                // ),
-                ,
+                deafultEmailTextFormField(emailController: emailController),
                 const SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  // keyboardType: TextInputType.emailAddress,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'Please Enter Password';
-                    }
-                  },
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.visibility_off_outlined),
-                    ),
-                    prefixIcon: Icon(Icons.lock),
-                    //  suffixIcon: Icon(Icons.remove_red_eye),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                deafultPasswordTextFormField(
+                    passwordController: passwordController),
                 TextButton(
                     onPressed: () {
                       navigateTo(context, RecoverScreen());
                     },
                     child: const Text(
-                      'Recovery Password?',
+                      'Forget Password?',
                       textAlign: TextAlign.end,
                     )),
                 SizedBox(
-                  height: 15,
+                  height: 8,
                 ),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadiusDirectional.circular(10),
                   ),
-                  child: MaterialButton(
-                    height: 58,
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        navigateTo(context, HomeLayoutScreen());
-                      } else {
-                        return null;
-                      }
-                    },
-                    child: Text(
-                      'Log In',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    //  color: MyColors.myPurple,
-                    color: Colors.green,
+                  child: DefaultBTN(
+                    formKey: formKey,
+                    text: 'Login',
                     padding:
                         EdgeInsets.symmetric(horizontal: 122, vertical: 16),
-                    //  clipBehavior: Clip.antiAliasWithSaveLayer,
+                    // onpressed: () {
+                    //   if (formKey.currentState!.validate()) {
+                    //     navigateTo(context, HomeLayoutScreen());
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
                   ),
                 ),
                 SizedBox(
-                  height: 72,
+                  height: 30,
                 ),
-                Text(
-                  'Continue with ..',
+                const Text(
+                  'Or Continue with ..',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(
@@ -150,19 +114,12 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Row(
                     children: [
+                      SizedBox(width: 90),
                       IconButton(
                         onPressed: () {},
                         icon: Icon(Icons.facebook_outlined),
                         iconSize: 40,
                         color: Colors.blue,
-                      ),
-                      SizedBox(
-                        width: 65,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.apple_outlined),
-                        iconSize: 40,
                       ),
                       SizedBox(
                         width: 65,
@@ -188,7 +145,23 @@ class LoginScreen extends StatelessWidget {
                         },
                         child: Text('Register Now')),
                   ],
-                )
+                ),
+                Container(
+                  alignment: AlignmentDirectional.bottomStart,
+                  width: double.infinity,
+                  height: 80,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadiusDirectional.all(Radius.circular(100))),
+                  child: Image(
+                    image: AssetImage('assets/images/down.png'),
+                    //alignment: ,
+                    //  height: height(context) * .55,
+                    // width: width(context),
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ],
             ),
           ),

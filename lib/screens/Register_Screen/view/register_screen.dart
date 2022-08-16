@@ -21,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 135),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 80),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               // mainAxisAlignment: MainAxisAlignment.center,
@@ -41,75 +41,37 @@ class RegisterScreen extends StatelessWidget {
                   // width: 213,
                   // height: 46,
                   child: const Text(
-                    'Create an account and let the fun begins!!',
+                    'Create An Account And Join To "La Vie" Community !',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Work Sans',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 21),
                   ),
                 ),
                 const SizedBox(
                   height: 70,
                 ),
-                TextFormField(
-                  keyboardType: TextInputType.name,
-                  validator: (String? value) {
+                deafultTextFormField(
+                  type: TextInputType.name,
+                  controller: nameController,
+                  label: 'Name',
+                  prefix: Icon(Icons.person),
+                  validate: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Name';
                     }
                   },
-                  controller: nameController,
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(),
-                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'Please Enter An Email Address';
-                    }
-                  },
-                  controller: emailController,
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Email Adress',
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                deafultEmailTextFormField(emailController: emailController),
                 SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  // keyboardType: TextInputType.emailAddress,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'Please Enter Password';
-                    }
-                  },
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    //fillColor: HexColor('#536DFE'),
-                    // hoverColor: HexColor('#536DFE'),
-                    labelText: 'Password',
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.visibility_off_outlined),
-                    ),
-                    prefixIcon: Icon(Icons.lock),
-                    //  suffixIcon: Icon(Icons.remove_red_eye),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                deafultPasswordTextFormField(
+                    passwordController: passwordController),
                 SizedBox(height: 20),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -117,27 +79,22 @@ class RegisterScreen extends StatelessWidget {
                     //color: HexColor('#536DFE'),
                     borderRadius: BorderRadiusDirectional.circular(10),
                   ),
-                  child: MaterialButton(
-                    //colorBrightness: Brightness.dark,
-                    height: 58,
-                    onPressed: () {
-                      if (formKey.currentState!.validate())
-                        navigateTo(context, HomeLayoutScreen());
-                    },
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    color: Colors.red,
-                    padding: EdgeInsets.symmetric(horizontal: 72, vertical: 16),
-                    //  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: DefaultBTN(
+                    formKey: formKey,
+                    text: 'Register',
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 100, vertical: 19),
+                    // onpressed: () {
+                    //   if (formKey.currentState!.validate()) {
+                    //     navigateTo(context, HomeLayoutScreen());
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
                   ),
                 ),
                 SizedBox(
-                  height: 72,
+                  height: 30,
                 ),
                 Text(
                   'Continue with ..',
@@ -150,6 +107,7 @@ class RegisterScreen extends StatelessWidget {
                   width: double.infinity,
                   child: Row(
                     children: [
+                      SizedBox(width: 70),
                       IconButton(
                         onPressed: () {},
                         icon: Icon(Icons.facebook_outlined),
@@ -161,7 +119,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.apple_outlined),
+                        icon: Image.asset('assets/images/google.png'),
                         iconSize: 40,
                       ),
                       SizedBox(
