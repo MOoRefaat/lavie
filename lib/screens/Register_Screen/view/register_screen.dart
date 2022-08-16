@@ -9,7 +9,9 @@ class RegisterScreen extends StatelessWidget {
 
   var passwordConfirmController = TextEditingController();
 
-  var nameController = TextEditingController();
+  var firstNameController = TextEditingController();
+
+  var lastNameController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
@@ -54,16 +56,40 @@ class RegisterScreen extends StatelessWidget {
                 const SizedBox(
                   height: 70,
                 ),
-                deafultTextFormField(
-                  type: TextInputType.name,
-                  controller: nameController,
-                  label: 'Name',
-                  prefix: Icon(Icons.person),
-                  validate: (String? value) {
-                    if (value!.isEmpty) {
-                      return 'Please Enter Your Name';
-                    }
-                  },
+                Row(
+                  children: [
+                    Container(
+                      width: 155,
+                      child: deafultTextFormField(
+                        type: TextInputType.name,
+                        controller: firstNameController,
+                        label: 'First Name',
+                        prefix: Icon(Icons.person),
+                        validate: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Please Enter Your Name';
+                          }
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 13,
+                    ),
+                    Container(
+                      width: 155,
+                      child: deafultTextFormField(
+                        type: TextInputType.name,
+                        controller: lastNameController,
+                        label: 'Last Name',
+                        prefix: Icon(Icons.person),
+                        validate: (String? value) {
+                          if (value!.isEmpty) {
+                            return 'Please Enter Your Name';
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 20,
@@ -92,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
                     formKey: formKey,
                     text: 'Register',
                     padding:
-                        EdgeInsets.symmetric(horizontal: 100, vertical: 19),
+                        EdgeInsets.symmetric(horizontal: 120, vertical: 19),
                     // onpressed: () {
                     //   if (formKey.currentState!.validate()) {
                     //     navigateTo(context, HomeLayoutScreen());
