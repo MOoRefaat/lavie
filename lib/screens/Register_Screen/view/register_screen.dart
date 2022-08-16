@@ -7,6 +7,8 @@ class RegisterScreen extends StatelessWidget {
 
   var passwordController = TextEditingController();
 
+  var passwordConfirmController = TextEditingController();
+
   var nameController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -71,7 +73,14 @@ class RegisterScreen extends StatelessWidget {
                   height: 20,
                 ),
                 deafultPasswordTextFormField(
-                    passwordController: passwordController),
+                  passwordController: passwordController,
+                  text: 'Password',
+                ),
+                SizedBox(height: 20),
+                deafultPasswordTextFormField(
+                  passwordController: passwordConfirmController,
+                  text: 'Confirm Password',
+                ),
                 SizedBox(height: 20),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,

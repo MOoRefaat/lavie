@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class deafultPasswordTextFormField extends StatelessWidget {
+  final String text;
   const deafultPasswordTextFormField({
     Key? key,
     required this.passwordController,
+    required this.text,
   }) : super(key: key);
 
   final TextEditingController passwordController;
@@ -21,7 +23,7 @@ class deafultPasswordTextFormField extends StatelessWidget {
       controller: passwordController,
       obscureText: true,
       decoration: InputDecoration(
-        labelText: 'Password',
+        labelText: text,
         suffixIcon: IconButton(
           onPressed: () {},
           icon: Icon(Icons.visibility_off_outlined),

@@ -69,7 +69,9 @@ class LoginScreen extends StatelessWidget {
                   height: 20,
                 ),
                 deafultPasswordTextFormField(
-                    passwordController: passwordController),
+                  passwordController: passwordController,
+                  text: 'Password',
+                ),
                 TextButton(
                     onPressed: () {
                       navigateTo(context, RecoverScreen());
