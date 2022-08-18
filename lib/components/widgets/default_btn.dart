@@ -6,13 +6,13 @@ import '../../screens/HomeLayout_Screen/view/homeLayout_screen.dart';
 class DefaultBTN extends StatelessWidget {
   final String text;
   final EdgeInsets padding;
-  // final Function onpressed;
+  final VoidCallback onPressed;
   const DefaultBTN({
     Key? key,
     required this.formKey,
     required this.text,
     required this.padding,
-    //  required this.onpressed,
+     required this.onPressed,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -21,13 +21,13 @@ class DefaultBTN extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       height: 58,
-      onPressed: () {
-        if (formKey.currentState!.validate()) {
-          navigateTo(context, HomeLayoutScreen());
-        } else {
-          return null;
-        }
-      },
+      onPressed: onPressed
+        // if (formKey.currentState!.validate()) {
+        //   navigateTo(context, HomeLayoutScreen());
+        // } else {
+        //   return null;
+        // }
+      ,
       child: Text(
         text,
         style: TextStyle(

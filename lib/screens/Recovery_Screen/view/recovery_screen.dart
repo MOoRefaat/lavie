@@ -60,7 +60,7 @@ class RecoverScreen extends StatelessWidget {
                     formKey: formKey,
                     text: 'Send',
                     padding:
-                        EdgeInsets.symmetric(horizontal: 125, vertical: 16),
+                        EdgeInsets.symmetric(horizontal: 125, vertical: 16), onPressed: () {  },
                     // onpressed: () {
                     //   if (formKey.currentState!.validate()) {
                     //     navigateTo(context, HomeLayoutScreen());

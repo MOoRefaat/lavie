@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                     formKey: formKey,
                     text: 'Login',
                     padding:
-                        EdgeInsets.symmetric(horizontal: 122, vertical: 16),
+                        EdgeInsets.symmetric(horizontal: 122, vertical: 16), onPressed: () {  },
                     // onpressed: () {
                     //   if (formKey.currentState!.validate()) {
                     //     navigateTo(context, HomeLayoutScreen());
