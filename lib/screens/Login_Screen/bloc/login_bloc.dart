@@ -21,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         email: event.email,
       )
           .then((value) {
-        emit(LoginSuccessState(message: value!.message.toString()));
+        emit(LoginSuccessState(message: value.message.toString()));
       }).catchError((error) {
         print(error.toString());
         emit(LoginErrorState(errormessage: error!.toString()));

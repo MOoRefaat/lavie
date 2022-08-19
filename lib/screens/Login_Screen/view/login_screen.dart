@@ -111,9 +111,9 @@ class LoginScreen extends StatelessWidget {
                               getIt.get<LoginBloc>().add(LoginEventData(
                                   email: emailController.text,
                                   password: passwordController.text));
-                              if (state is LoginSuccessState) {
-                                navigateTo(context, HomeLayoutScreen());
-                              }
+                              // if (state is LoginSuccessState) {
+                              //   navigateTo(context, HomeLayoutScreen());
+                              // }
                             }
                           },
                         ),

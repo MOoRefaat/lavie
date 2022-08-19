@@ -29,7 +29,7 @@ class MainRepo {
       {required String password, required String email}) async {
     var model = await _webServices.postLogin({
       "email": email,
-      "password": password,
+      "password": password
     });
     loginModel = LoginModel.fromJson(model.data);
     print(loginModel.data?.user?.firstName);

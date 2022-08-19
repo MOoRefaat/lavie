@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lavie/repository/main_repo.dart';
+import 'package:lavie/screens/Login_Screen/bloc/login_bloc.dart';
 import 'package:lavie/screens/Login_Screen/view/login_screen_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie/screens/Register_Screen/bloc/register_bloc.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => getIt.get<RegisterBloc>()),
-          // BlocProvider(create: (context) => getIt.get<LoginBloc>())
+          BlocProvider(create: (context) => getIt.get<LoginBloc>())
         ],
         child: RepositoryProvider(
           create: (context) => getIt.get<MainRepo>(),
