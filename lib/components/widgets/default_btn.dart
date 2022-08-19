@@ -12,7 +12,7 @@ class DefaultBTN extends StatelessWidget {
     required this.formKey,
     required this.text,
     required this.padding,
-     required this.onPressed,
+    required this.onPressed,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
@@ -22,11 +22,11 @@ class DefaultBTN extends StatelessWidget {
     return MaterialButton(
       height: 58,
       onPressed: onPressed
-        // if (formKey.currentState!.validate()) {
-        //   navigateTo(context, HomeLayoutScreen());
-        // } else {
-        //   return null;
-        // }
+      // if (formKey.currentState!.validate()) {
+      //   navigateTo(context, HomeLayoutScreen());
+      // } else {
+      //   return null;
+      // }
       ,
       child: Text(
         text,

@@ -15,7 +15,12 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterBloc, RegisterState>(
       listener: (context, state) {
-
+        if (state is SignUpSuccessState) {
+          showToast(text: state.message, state: ToastState.SUCCSES);
+          showToast(text: state.message, state: ToastState.SUCCSES);
+        } else if (state is SignUpErrorState) {
+          showToast(text: state.message, state: ToastState.ERORR);
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -24,8 +29,8 @@ class RegisterScreen extends StatelessWidget {
             child: Form(
               key: formKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 30, vertical: 80),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 80),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -107,38 +112,44 @@ class RegisterScreen extends StatelessWidget {
                       text: 'Confirm Password',
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      decoration: BoxDecoration(
-                        //color: HexColor('#536DFE'),
-                        borderRadius: BorderRadiusDirectional.circular(10),
+                    ConditionalBuilder(
+                      condition: state is! SignUpLoadingState,
+                      builder: (context) => Container(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        decoration: BoxDecoration(
+                          //color: HexColor('#536DFE'),
+                          borderRadius: BorderRadiusDirectional.circular(10),
+                        ),
+                        child: DefaultBTN(
+                          formKey: formKey,
+                          text: 'Register',
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 120, vertical: 19),
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              // BlocProvider.of<RegisterBloc>(context).add(event)
+                              getIt.get<RegisterBloc>().add(SignUpEvent(
+                                  email: emailController.text,
+                                  firstName: firstNameController.text,
+                                  lastName: lastNameController.text,
+                                  password: passwordController.text));
+                            }
+                            // if (state is SignUpSuccessState) {
+                            //   navigateTo(context, HomeLayoutScreen());
+                            // }
+                          },
+                        ),
                       ),
-                      child: DefaultBTN(
-                        formKey: formKey,
-                        text: 'Register',
-                        padding:
-                        const EdgeInsets.symmetric(
-                            horizontal: 120, vertical: 19),
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            // BlocProvider.of<RegisterBloc>(context).add(event)
-                            getIt.get<RegisterBloc>().add(SignUpEvent(
-                              email: emailController.text,
-                              firstName: firstNameController.text,
-                              lastName: lastNameController.text,
-                              password: passwordController.text
-                            ));
-                          }
-                        },
-                      ),
+                      fallback: (context) =>
+                          Center(child: CircularProgressIndicator()),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     const Text(
                       'Continue with ..',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w800),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                     ),
                     const SizedBox(
                       height: 20,

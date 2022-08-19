@@ -3,11 +3,14 @@ import 'package:lavie/repository/main_repo.dart';
 import 'package:lavie/screens/Login_Screen/view/login_screen_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lavie/screens/Register_Screen/bloc/register_bloc.dart';
+import 'package:lavie/screens/Register_Screen/view/register_screen_imports.dart';
 import 'di/getit.dart';
+import 'network/cashe_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
+  await CasheHelper.init();
   runApp(const MyApp());
 }
 
@@ -18,12 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => getIt.get<RegisterBloc>())
+          BlocProvider(create: (context) => getIt.get<RegisterBloc>()),
+          // BlocProvider(create: (context) => getIt.get<LoginBloc>())
         ],
         child: RepositoryProvider(
           create: (context) => getIt.get<MainRepo>(),
           child: MaterialApp(
-              debugShowCheckedModeBanner: false, home: LoginScreen()),
+              debugShowCheckedModeBanner: false, home: RegisterScreen()),
         ));
   }
 }

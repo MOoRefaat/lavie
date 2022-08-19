@@ -8,10 +8,11 @@ class SignUpModel {
   SignUpData? data;
 
   SignUpModel({this.type, this.message, this.data});
-  factory SignUpModel.fromJson(Map<String,dynamic> json)=> _$SignUpModelFromJson(json);
-  Map<String,dynamic>toJson()=> _$SignUpModelToJson(this);
-
+  factory SignUpModel.fromJson(Map<String, dynamic> json) =>
+      _$SignUpModelFromJson(json);
+  Map<String, dynamic> toJson() => _$SignUpModelToJson(this);
 }
+
 @JsonSerializable()
 class SignUpData {
   SignUpUser? user;
@@ -19,9 +20,11 @@ class SignUpData {
   String? refreshToken;
 
   SignUpData({this.user, this.accessToken, this.refreshToken});
-  factory SignUpData.fromJson(Map<String,dynamic> json)=> _$SignUpDataFromJson(json);
-  Map<String,dynamic>toJson()=> _$SignUpDataToJson(this);
+  factory SignUpData.fromJson(Map<String, dynamic> json) =>
+      _$SignUpDataFromJson(json);
+  Map<String, dynamic> toJson() => _$SignUpDataToJson(this);
 }
+
 @JsonSerializable()
 class SignUpUser {
   String? userId;
@@ -34,12 +37,13 @@ class SignUpUser {
 
   SignUpUser(
       {this.userId,
-        this.firstName,
-        this.lastName,
-        this.email,
-        this.imageUrl,
-        this.address,
-        this.role});
-  factory SignUpUser.fromJson(Map<String,dynamic> json)=> _$SignUpUserFromJson(json);
-  Map<String,dynamic>toJson()=> _$SignUpUserToJson(this);
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.imageUrl,
+      this.address,
+      this.role});
+  factory SignUpUser.fromJson(Map<String, dynamic> json) =>
+      _$SignUpUserFromJson(json);
+  Map<String, dynamic> toJson() => _$SignUpUserToJson(this);
 }
