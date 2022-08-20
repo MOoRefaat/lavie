@@ -6,7 +6,7 @@ import '../models/signup_model.dart';
 class MainRepo {
   final WebServices _webServices;
   late SignUpModel registerModel;
-  late LoginModel loginModel;
+  LoginModel? loginModel;
   MainRepo({required WebServices webServices}) : _webServices = webServices;
   Future<SignUpModel?> signUp(
       {required String first,
@@ -32,8 +32,9 @@ class MainRepo {
       "password": password,
     });
     loginModel = LoginModel.fromJson(model.data);
-    print(loginModel.data?.user?.firstName);
+    print(loginModel?.data?.user?.firstName);
+    print(loginModel?.message);
 
-    return loginModel;
+    return loginModel!;
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:lavie/models/loginModel/login_model.dart';
 
 import '../../../repository/main_repo.dart';
 
@@ -24,8 +26,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           .then((value) {
         emit(LoginSuccessState(message: value.message.toString()));
       }).catchError((error) {
-        print(error.toString());
-        emit(LoginErrorState(errormessage: error.toString()));
+        // print(error.toString());
+        emit(LoginErrorState(errormessage: _mainRepo.loginModel?.message));
+        print(_mainRepo.loginModel?.message);
       });
     });
   }

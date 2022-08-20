@@ -16,9 +16,10 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           showToast(text: state.message, state: ToastState.SUCCSES);
-          showToast(text: state.message, state: ToastState.SUCCSES);
+          navigateTo(context, HomeLayoutScreen());
         } else if (state is LoginErrorState) {
-          showToast(text: state.errormessage, state: ToastState.ERORR);
+          showToast(
+              text: state.errormessage.toString(), state: ToastState.ERORR);
         }
       },
       builder: (context, state) {
@@ -111,9 +112,6 @@ class LoginScreen extends StatelessWidget {
                               getIt.get<LoginBloc>().add(LoginEventData(
                                   email: emailController.text,
                                   password: passwordController.text));
-                              if (state is LoginSuccessState) {
-                                navigateTo(context, HomeLayoutScreen());
-                              }
                             }
                           },
                         ),
