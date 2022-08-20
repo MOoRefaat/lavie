@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
           navigateTo(context, HomeLayoutScreen());
         } else if (state is LoginErrorState) {
           showToast(
-              text: state.errormessage.toString(), state: ToastState.ERORR);
+              text: 'Incorrect Email or Password', state: ToastState.ERORR);
         }
       },
       builder: (context, state) {

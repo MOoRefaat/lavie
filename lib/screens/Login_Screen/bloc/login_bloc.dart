@@ -27,7 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(LoginSuccessState(message: value.message.toString()));
       }).catchError((error) {
         // print(error.toString());
-        emit(LoginErrorState(errormessage: _mainRepo.loginModel?.message));
+        emit(LoginErrorState());
         print(_mainRepo.loginModel?.message);
       });
     });

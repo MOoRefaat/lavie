@@ -17,9 +17,9 @@ class RegisterScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpSuccessState) {
           showToast(text: state.message, state: ToastState.SUCCSES);
-          showToast(text: state.message, state: ToastState.SUCCSES);
+          navigateTo(context, LoginScreen());
         } else if (state is SignUpErrorState) {
-          showToast(text: state.message, state: ToastState.ERORR);
+          showToast(text: 'password too weak ', state: ToastState.ERORR);
         }
       },
       builder: (context, state) {

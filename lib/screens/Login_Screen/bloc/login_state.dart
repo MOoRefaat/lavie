@@ -17,11 +17,11 @@ class LoginSuccessState extends LoginState {
 }
 
 class LoginErrorState extends LoginState {
-  //final LoginModel errormessage;
-  final String? errormessage;
-  const LoginErrorState({required this.errormessage});
+  //final LoginModel error;
+  //final String error;
+  //const LoginErrorState({required this.error});
   @override
-  List<Object?> get props => [errormessage];
+  List<Object?> get props => [];
 }
 
 class LoginLoadingState extends LoginState {
