@@ -10,7 +10,8 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final MainRepo _mainRepo;
-  LoginBloc({required MainRepo mainRepo}): _mainRepo = mainRepo,
+  LoginBloc({required MainRepo mainRepo})
+      : _mainRepo = mainRepo,
         super(LoginInitial()) {
     on<LoginEvent>((event, emit) {});
     on<LoginEventData>((event, emit) async {
@@ -21,10 +22,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         email: event.email,
       )
           .then((value) {
-        emit(LoginSuccessState(message: value!.message.toString()));
+        emit(LoginSuccessState(message: value.message.toString()));
       }).catchError((error) {
         print(error.toString());
-        emit(LoginErrorState(errormessage: error!.toString()));
+        emit(LoginErrorState(errormessage: error.toString()));
       });
     });
   }

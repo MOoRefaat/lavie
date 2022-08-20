@@ -9,10 +9,11 @@ class DefaultBTN extends StatelessWidget {
   final VoidCallback onPressed;
   const DefaultBTN({
     Key? key,
-    required this.formKey,
+    // required this.formKey,
     required this.text,
     required this.padding,
     required this.onPressed,
+    required this.formKey,
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
