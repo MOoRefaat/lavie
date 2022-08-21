@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:lavie/di/getit.dart';
 import 'package:lavie/network/api.dart';
 import '../models/loginModel/login_model.dart';
+import '../models/products/products_model.dart';
 import '../models/signup_model.dart';
 
 import '../network/cashe_helper.dart';
@@ -34,7 +35,7 @@ class MainRepo {
       "password": password,
     });
     loginModel = LoginModel.fromJson(model.data);
-    var token =loginModel?.data?.accessToken;
+    var token = loginModel?.data?.accessToken;
     print(token);
     CasheHelper.saveData(key: 'TOKEN', value: '$token');
     print(loginModel?.data?.user?.firstName);
@@ -42,4 +43,8 @@ class MainRepo {
 
     return loginModel!;
   }
+
+  // Future<ProductsModel> getProduct() async {
+  //   var model = _webServices.fetchProducts();
+  // }
 }
