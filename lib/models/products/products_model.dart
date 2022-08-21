@@ -17,7 +17,7 @@ class ProductData {
   String? productId;
   String? name;
   String? description;
-  String? imageUrl;
+  String imageUrl;
   String? type;
   int? price;
   bool? available;
@@ -29,7 +29,7 @@ class ProductData {
       {this.productId,
         this.name,
         this.description,
-        this.imageUrl,
+        this.imageUrl='',
         this.type,
         this.price,
         this.available,

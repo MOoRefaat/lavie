@@ -141,7 +141,7 @@ class _ProductScreenState extends State<ProductScreen> {
             Container(
               height: height(context) * .13,
               width: width(context) * .35,
-              child: Image.network('${LaVieApi.baseUrl}+${model![index].imageUrl}'),
+              child: Image.network(LaVieApi.baseUrl+model![index].imageUrl),
             ),
             SizedBox(
               height: 10,
