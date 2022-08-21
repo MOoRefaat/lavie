@@ -1,15 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lavie/di/getit.dart';
+import 'package:lavie/network/api.dart';
+import 'package:lavie/screens/Product_Screen/bloc/products_bloc.dart';
 
 import '../../components/components.dart';
 import '../../components/widgets/default_btn.dart';
 import '../../const/consts.dart';
+import '../../models/products/products_model.dart';
 import '../Cart_Search/cart_screen.dart';
 import '../Search_Screen/search_screen.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   ProductScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
   int number = 10;
+@override
+  void initState() {
+  getIt.get<ProductsBloc>().add(GetProductsEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -28,7 +44,7 @@ class ProductScreen extends StatelessWidget {
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                       borderRadius:
-                          BorderRadiusDirectional.all(Radius.circular(0))),
+                      BorderRadiusDirectional.all(Radius.circular(0))),
                   child: Image(
                     image: AssetImage('assets/images/BrandLogo.png'),
                     //alignment: ,
@@ -82,25 +98,32 @@ class ProductScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Container(
-              // color: Colors.grey[400],
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 10,
-                // crossAxisCount: 2,
-                // mainAxisSpacing: 2,
-                // crossAxisSpacing: 2,
-                // childAspectRatio: 1 / 1.56,
-                itemBuilder: (BuildContext context, int index) =>
-                    ProductListBuilder(context),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: .7,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10),
-                //     List.generate(number, (index) => ProductListBuilder(context))
-              ),
+            BlocConsumer<ProductsBloc, ProductsState>(
+              listener: (context, state) {
+
+              },
+              builder: (context, state) {
+                return state is ProductsSuccessState ? Container(
+                  // color: Colors.grey[400],
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: state.products?.length,
+                    // crossAxisCount: 2,
+                    // mainAxisSpacing: 2,
+                    // crossAxisSpacing: 2,
+                    // childAspectRatio: 1 / 1.56,
+                    itemBuilder: (BuildContext context, int index) =>
+                        ProductListBuilder(context,index,state.products),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: .7,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10),
+                    //     List.generate(number, (index) => ProductListBuilder(context))
+                  ),
+                ):Container();
+              },
             )
           ],
         ),
@@ -108,7 +131,8 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Widget ProductListBuilder(context) => Container(
+  Widget ProductListBuilder(context,index,List<ProductData>? model) =>
+      Container(
         padding: EdgeInsets.only(left: 10, right: 10, top: 20),
         color: Colors.grey[100],
         child: Column(
@@ -117,24 +141,21 @@ class ProductScreen extends StatelessWidget {
             Container(
               height: height(context) * .13,
               width: width(context) * .35,
-              child: Image(
-                image: AssetImage('assets/images/planet2.png'),
-                fit: BoxFit.fill,
-              ),
+              child: Image.network('${LaVieApi.baseUrl}+${model![index].imageUrl}'),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              'GARDENIA PLANT',
+              model![index].name!,
               style:
-                  TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600),
+              TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 5,
             ),
             Text(
-              '70EPG',
+              model![index].price.toString(),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
             ),
             Container(

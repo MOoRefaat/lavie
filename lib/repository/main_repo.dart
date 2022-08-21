@@ -44,7 +44,14 @@ class MainRepo {
     return loginModel!;
   }
 
-  // Future<ProductsModel> getProduct() async {
-  //   var model = _webServices.fetchProducts();
-  // }
+  Future<List<ProductData>?> getProduct() async {
+    var token = CasheHelper.getData(key: "TOKEN");
+    print("***********************$token");
+    var model = await _webServices.fetchProducts(token);
+    ProductsModel productModel = ProductsModel.fromJson(model.data);
+    List<ProductData>? productData=productModel.data?.toList();
+
+    print(productModel);
+    return productData;
+  }
 }
