@@ -26,7 +26,7 @@ ProductData _$ProductDataFromJson(Map<String, dynamic> json) => ProductData(
       productId: json['productId'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['imageUrl'] as String,
       type: json['type'] as String?,
       price: json['price'] as int?,
       available: json['available'] as bool?,

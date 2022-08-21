@@ -61,11 +61,13 @@ class WebServices {
     }
   }
 
-  Future<Response> fetchProducts() async {
+  Future<Response> fetchProducts(Object? token) async {
     try {
-      var response = await dio.get(LaVieApi.products, queryParameters: {
-        "Authorization": "Bearer ${CasheHelper.getData(key: 'TOKEN')}"
-      });
+      var response = await dio.get(LaVieApi.products,options: Options(
+        headers: {
+          "Authorization": "Bearer $token"
+        }
+      ));
       return response;
     } catch (e) {
       print(e);

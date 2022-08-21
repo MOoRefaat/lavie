@@ -38,6 +38,8 @@ dependencies:
   get_it: ^7.2.0
   fluttertoast: ^8.0.9
   conditional_builder_null_safety: ^0.0.6
+  http: ^0.13.5
+
 
 
 
