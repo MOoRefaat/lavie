@@ -39,6 +39,7 @@ dependencies:
   fluttertoast: ^8.0.9
   conditional_builder_null_safety: ^0.0.6
   http: ^0.13.5
+  curved_navigation_bar: ^1.0.3
 
 
 

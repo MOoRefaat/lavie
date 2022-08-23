@@ -94,8 +94,12 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget CartBuilder(context, int count) => Container(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadiusDirectional.all(Radius.circular(20))),
         padding: EdgeInsets.only(left: 10, right: 10, top: 30),
-        color: Colors.grey[200],
+        //  color: Colors.grey[200],
         child: Row(
           children: [
             Image(

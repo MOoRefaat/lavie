@@ -21,127 +21,134 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   int number = 10;
-@override
+  @override
   void initState() {
-  getIt.get<ProductsBloc>().add(GetProductsEvent());
+    getIt.get<ProductsBloc>().add(GetProductsEvent());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  alignment: AlignmentDirectional.center,
-                  width: 200,
-                  height: 60,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                      BorderRadiusDirectional.all(Radius.circular(0))),
-                  child: Image(
-                    image: AssetImage('assets/images/BrandLogo.png'),
-                    //alignment: ,
-                    height: height(context) * 1,
-                    width: width(context),
-                    fit: BoxFit.fill,
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    alignment: AlignmentDirectional.center,
+                    width: 160,
+                    height: 50,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadiusDirectional.all(Radius.circular(9))),
+                    child: Image(
+                      image: AssetImage('assets/images/Splash.png'),
+                      //alignment: ,
+                      height: height(context) * 1,
+                      width: width(context),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadiusDirectional.all(
-                          Radius.elliptical(18, 18))),
-                  child: IconButton(
-                    onPressed: () {
-                      navigateTo(context, SearchScreen());
-                    },
-                    icon: const Icon(Icons.search),
-                    color: Colors.white,
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadiusDirectional.all(
+                            Radius.elliptical(18, 18))),
+                    child: IconButton(
+                      onPressed: () {
+                        navigateTo(context, SearchScreen());
+                      },
+                      icon: const Icon(Icons.search),
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  //color: Colors.green,
-                  child: IconButton(
-                    onPressed: () {
-                      navigateTo(context, CartScreen());
-                    },
-                    icon: Icon(Icons.shopping_cart),
-                    color: Colors.white,
+                  SizedBox(
+                    width: 5,
                   ),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadiusDirectional.all(
-                          Radius.elliptical(18, 18))),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            BlocConsumer<ProductsBloc, ProductsState>(
-              listener: (context, state) {
-
-              },
-              builder: (context, state) {
-                return state is ProductsSuccessState ? Container(
-                  // color: Colors.grey[400],
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: state.products?.length,
-                    // crossAxisCount: 2,
-                    // mainAxisSpacing: 2,
-                    // crossAxisSpacing: 2,
-                    // childAspectRatio: 1 / 1.56,
-                    itemBuilder: (BuildContext context, int index) =>
-                        ProductListBuilder(context,index,state.products),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: .7,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10),
-                    //     List.generate(number, (index) => ProductListBuilder(context))
-                  ),
-                ):Container();
-              },
-            )
-          ],
+                  Container(
+                    //color: Colors.green,
+                    child: IconButton(
+                      onPressed: () {
+                        navigateTo(context, CartScreen());
+                      },
+                      icon: Icon(Icons.shopping_cart),
+                      color: Colors.white,
+                    ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadiusDirectional.all(
+                            Radius.elliptical(18, 18))),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              BlocConsumer<ProductsBloc, ProductsState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  return state is ProductsSuccessState
+                      ? Container(
+                          // color: Colors.grey[400],
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: state.products?.length,
+                            // crossAxisCount: 2,
+                            // mainAxisSpacing: 2,
+                            // crossAxisSpacing: 2,
+                            // childAspectRatio: 1 / 1.56,
+                            itemBuilder: (BuildContext context, int index) =>
+                                ProductListBuilder(
+                                    context, index, state.products),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: .7,
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 10),
+                            //     List.generate(number, (index) => ProductListBuilder(context))
+                          ),
+                        )
+                      : Container();
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget ProductListBuilder(context,index,List<ProductData>? model) =>
+  Widget ProductListBuilder(context, index, List<ProductData>? model) =>
       Container(
         padding: EdgeInsets.only(left: 10, right: 10, top: 20),
-        color: Colors.grey[100],
+        color: Colors.white,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          //  mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: height(context) * .13,
-              width: width(context) * .35,
-              child: Image.network(LaVieApi.baseUrl+model![index].imageUrl),
+              height: height(context) * .14,
+              width: width(context) * .30,
+              child: Image.network(LaVieApi.baseUrl + model![index].imageUrl),
             ),
             SizedBox(
               height: 10,
@@ -149,7 +156,7 @@ class _ProductScreenState extends State<ProductScreen> {
             Text(
               model![index].name!,
               style:
-              TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600),
+                  TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 5,
@@ -166,9 +173,7 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               child: MaterialButton(
                 height: 35,
-                onPressed: () {
-                  ;
-                },
+                onPressed: () {},
                 child: Text(
                   'Add To Cart',
                   style: TextStyle(

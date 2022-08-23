@@ -11,6 +11,7 @@ import '../../../components/widgets/default_text_form_field.dart';
 import '../../../const/consts.dart';
 import '../../Notifactions_Screen/notifactions_screen.dart';
 import '../../Search_Screen/search_screen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
@@ -36,34 +37,54 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: screens[currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          elevation: 9,
-          backgroundColor: Colors.white70,
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.black,
-          currentIndex: currentIndex,
-          showUnselectedLabels: false,
-          selectedFontSize: 15,
-          iconSize: 22,
+        bottomNavigationBar: CurvedNavigationBar(
+          animationCurve:
+              Curves.easeInOut, // type: BottomNavigationBarType.fixed,
+          // elevation: 9,
+          backgroundColor: Colors.grey.shade300,
+          animationDuration: Duration(milliseconds: 400),
+          // selectedItemColor: Colors.green,
+          // unselectedItemColor: Colors.black,
+          // currentIndex: currentIndex,
+          // showUnselectedLabels: false,
+          // selectedFontSize: 15,
+          // iconSize: 22,
+          index: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
           items: [
-            BottomNavigationBarItem(
-                icon: Image.asset('assets/images/leave1.png'), label: 'Seeds'),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/QrCode.png'),
-              label: 'Scan',
+            Icon(
+              Icons.add,
+              size: 30,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+            Icon(
+              Icons.qr_code_scanner,
+              size: 30,
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/Bell.png'),
-              label: 'Notifacations',
+            Icon(
+              Icons.home,
+              size: 30,
+              color: Colors.green,
             ),
-            BottomNavigationBarItem(
-                icon: Image.asset('assets/images/Group.png'), label: 'Profile')
+            Icon(Icons.notifications, size: 30),
+            Icon(Icons.person, size: 30)
+            // Icon(Icons(Image.asset(('assets/images/leave1.png')))],
+            // items: <Widget>[
+            //   BottomNavigationBarItem(
+            //       icon: Image.asset('assets/images/leave1.png'), label: 'Seeds'),
+            //   BottomNavigationBarItem(
+            //     icon: Image.asset('assets/images/QrCode.png'),
+            //     label: 'Scan',
+            //   ),
+            //   BottomNavigationBarItem(
+            //     icon: Icon(Icons.home),
+            //     label: 'Home',
+            //   ),
+            //   BottomNavigationBarItem(
+            //     icon: Image.asset('assets/images/Bell.png'),
+            //     label: 'Notifacations',
+            //   ),
+            //   BottomNavigationBarItem(
+            //       icon: Image.asset('assets/images/Group.png'), label: 'Profile')
           ],
         ));
   }

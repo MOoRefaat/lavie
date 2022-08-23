@@ -1,17 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class QrScannerScreen extends StatelessWidget {
-  const QrScannerScreen({Key? key}) : super(key: key);
+import 'dart:io';
 
+class QrScannerScreen extends StatefulWidget {
+  //const QrScannerScreen({Key? key}) : super(key: key);
+  @override
+  State<QrScannerScreen> createState() => _QrScannerScreenState();
+}
+
+class _QrScannerScreenState extends State<QrScannerScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Text(
-      'QRScanner',
-      style: TextStyle(
-        fontSize: 50,
-        fontWeight: FontWeight.bold,
-      ),
-    ));
+    return Scaffold(
+        backgroundColor: Colors.grey[300],
+        body: Center(
+          child: Center(
+              child: Text(
+            'Qr Scan',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+          )),
+        ));
   }
 }
