@@ -56,7 +56,7 @@ class CartScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    '180,00',
+                    '600,00',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

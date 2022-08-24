@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../const/consts.dart';
+
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
@@ -30,6 +32,38 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
           )),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 70),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image(
+              image: AssetImage('assets/images/Frame.png'),
+              //alignment: ,
+              height: height(context) * .33,
+              width: width(context) * .65,
+              fit: BoxFit.fill,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Not Found',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                'Sorry, the keyword you entered cannot be found, please check again or search with another keyword.',
+                style: TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

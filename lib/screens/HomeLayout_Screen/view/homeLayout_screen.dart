@@ -42,7 +42,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               Curves.easeInOut, // type: BottomNavigationBarType.fixed,
           // elevation: 9,
           backgroundColor: Colors.grey.shade300,
-          animationDuration: Duration(milliseconds: 400),
+          animationDuration: Duration(milliseconds: 100),
           // selectedItemColor: Colors.green,
           // unselectedItemColor: Colors.black,
           // currentIndex: currentIndex,

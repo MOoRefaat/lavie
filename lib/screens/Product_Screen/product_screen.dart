@@ -21,6 +21,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   int number = 10;
+  // final TabController _tabController = TabController(length: 4, vsync: this);
   @override
   void initState() {
     getIt.get<ProductsBloc>().add(GetProductsEvent());
@@ -137,54 +138,74 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  Widget ProductListBuilder(context, index, List<ProductData>? model) =>
-      Container(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 20),
-        color: Colors.white,
-        child: Column(
-          //  mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: height(context) * .14,
-              width: width(context) * .30,
-              child: Image.network(LaVieApi.baseUrl + model![index].imageUrl),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              model![index].name!,
-              style:
-                  TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              model![index].price.toString(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-            ),
-            Container(
-              width: width(context) * .7,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadiusDirectional.circular(20),
-              ),
-              child: MaterialButton(
-                height: 35,
-                onPressed: () {},
-                child: Text(
-                  'Add To Cart',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+  Widget ProductListBuilder(context, index, List<ProductData>? model) => Column(
+        children: [
+          // Container(
+          //   child: TabBar(
+          //     tabs: [
+          //       Tab(text: 'All'),
+          //       Tab(
+          //         text: 'Planets',
+          //       ),
+          //       Tab(
+          //         text: 'Seeds',
+          //       ),
+          //       Tab(
+          //         text: 'Tools',
+          //       )
+          //     ],
+          //   ),
+          // ),
+          Container(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+            color: Colors.white,
+            child: Column(
+              //  mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: height(context) * .14,
+                  width: width(context) * .30,
+                  child:
+                      Image.network(LaVieApi.baseUrl + model![index].imageUrl),
                 ),
-                color: Colors.green,
-              ),
-            )
-          ],
-        ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  model![index].name!,
+                  style: TextStyle(
+                      fontFamily: 'Roboto', fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  model![index].price.toString(),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                ),
+                Container(
+                  width: width(context) * .7,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(20),
+                  ),
+                  child: MaterialButton(
+                    height: 35,
+                    onPressed: () {},
+                    child: Text(
+                      'Add To Cart',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    color: Colors.green,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       );
 }

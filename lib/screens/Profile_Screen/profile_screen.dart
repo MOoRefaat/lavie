@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lavie/components/components.dart';
+import 'package:lavie/screens/Login_Screen/view/login_screen_imports.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -47,6 +49,14 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 40),
+          Text(
+            'Edit Profile',
+            style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          ),
+          Icon(Icons.arrow_downward),
+          SizedBox(
+            height: 15,
+          ),
           Container(
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
@@ -96,6 +106,28 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 50,
+          ),
+          Container(
+            width: 280,
+            height: 50,
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadiusDirectional.circular(20)),
+            child: MaterialButton(
+              onPressed: () {
+                navigateToAndErase(context, LoginScreen());
+              },
+              child: Text(
+                'Log Out',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.white),
+              ),
+            ),
+          )
         ],
       ),
     );
